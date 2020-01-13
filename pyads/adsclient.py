@@ -91,7 +91,7 @@ class AdsClient:
                     newPacket = self.ReadAmsPacketFromSocket()
                     if newPacket.InvokeID == self._CurrentInvokeID:
                         self._CurrentPacket = newPacket
-                    else:
+                    elif newPacket.CommandID != 4:
                         print("Packet dropped:")
                         print(newPacket)
             except (socket.error, select.error, InvalidPacket) as e:
